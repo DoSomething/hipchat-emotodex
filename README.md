@@ -1,18 +1,20 @@
 # HipChat Emotodex
 
 ## Description
-A simple application for viewing and searching all custom emoticons uploaded to a [HipChat](http://www.hipchat.com/) group.
-
-## Example Emotodex
-Check out the [Do Something Emotodex](http://emoticons.dosomething.org/) for some custom emoticon ideas. If you like the set give Do Something's Chief Emoji Architect, [Dave Furnes](http://twitter.com/dfurnes) a shout on Twitter!
+A simple application for viewing and searching all custom emoticons uploaded to DoSomething.org's [HipChat](http://www.hipchat.com/) group. This is a fork of the [HipChat Emotodex](https://github.com/mmwtsn/hipchat-emotodex) hosted on [Heroku](http://heroku.com/).
 
 ## Development
-To run the Emotodex locally, you will need Ruby, Ruby Gems, Bundler and [Redis](http://redis.io) installed on your system. Redis is an open source key-value store that is used by the HipChat Emotodex as a cache.
+To run an Emotodex locally, you will need Ruby, Ruby Gems, Bundler and [Redis](http://redis.io) installed on your system. Redis is an open source key-value store that is used by the HipChat Emotodex as a cache. [Guard](https://github.com/guard/guard) is used to run the [RSpec](http://rspec.info/) test suite and compile [SASS](http://sass-lang.com/) using [Compass](http://compass-style.org/). Run `guard` to start watching for changes.
+
+Once a local Emotodex is up and running you'll be able to push this repository up to Heroku. At the time of writing, both the hosting and Redis service are free. If you haven't used Heroku before, read through their [quick start guide](https://devcenter.heroku.com/articles/quickstart) to get up and running.
 
 To get started:
 - Visit the [HipChat admin page](https://www.hipchat.com/admin/emoticons) for your group and upload some custom emoticons
 - [Create a HipChat API key](https://hipchat.com/account/api)
-- Assign your API key to the "HIPCHAT_API" environment variable (add `export HIPCHAT_API=<your_api_key>` to your `.bash_profile`)
+- Add the two environment variables required by the server to your `.bash_profile`:
+    - `export HIPCHAT_API=<api_key>` (your HipChat API key)
+    - `export REDISTOGO_URL=redis://localhost:6379` (a Redis add-on for Heroku)
+
 - Clone this repository, `cd` into the HipChat Rolodex directory and run `bundle install`
 - `rackup` or to start the server!
 
